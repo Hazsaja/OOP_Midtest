@@ -1,0 +1,46 @@
+
+
+.left-form{
+    -fx-background-color:linear-gradient(to bottom right, #fff82b, #f8f1ae)
+}
+
+.exit{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+
+.exit:hover{
+    -fx-background-color:#dd4763;
+}
+
+.textfield{
+    -fx-background-color:transparent;
+    -fx-border-color:#000;
+    -fx-border-widht:0px 0px 0.8px 0px;
+    -fx-font-size:13px;
+    -fx-font-family:"Tahoma";
+}
+
+.textfield:focused{
+    -fx-border-color:linear-gradient(to bottom right, #fff82b, #f8f1ae);
+    -fx-border-widht:0px 0px 1.8px 0px;
+}
+
+.login_btn{
+    -fx-background-color:linear-gradient(to bottom, #fff82b, #f8f1ae);
+    -fx-background-radius:8px;
+    -fx-font-size:14px;
+    -fx-text-fill:#000;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+
+.login_btn:hover{
+    -fx-background-color:linear-gradient(to bottom, #e1ff3a, #f8ff3b);
+}
+
+
+
+
+
+
