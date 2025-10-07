@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dashboardController">
+
+    <!-- Bagian Kiri -->
+    <left>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Label text="Daftar Customer" />
+            <ListView fx:id="customerList" prefHeight="200" />
+
+            <Label text="Daftar Mobil" />
+            <ListView fx:id="carList" prefHeight="200" />
+        </VBox>
+    </left>
+
+    <!-- Bagian Tengah -->
+    <center>
+        <TabPane prefWidth="500">
+            <!-- Tab Customer -->
+            <Tab text="Customer">
+                <VBox spacing="8">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <TextField fx:id="custIdField" promptText="ID Customer" />
+                    <TextField fx:id="custNamaField" promptText="Nama Customer" />
+                    <TextField fx:id="custNoHpField" promptText="No HP" />
+                    <HBox spacing="10">
+                        <Button onAction="#addCustomer" text="Tambah Customer" />
+                        <Button onAction="#deleteCustomer" text="Hapus" />
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Tab Mobil -->
+            <Tab text="Mobil">
+                <VBox spacing="8">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <TextField fx:id="carIdField" promptText="ID Mobil" />
+                    <TextField fx:id="carMerkField" promptText="Merk Mobil" />
+                    <TextField fx:id="carModelField" promptText="Model Mobil" />
+                    <TextField fx:id="carHargaPerJamField" promptText="Harga per Jam" />
+                    <TextField fx:id="carHargaPerHariField" promptText="Harga per Hari" />
+                    <HBox spacing="10">
+                        <Button onAction="#addCar" text="Tambah Mobil" />
+                        <Button onAction="#deleteCar" text="Hapus" />
+                    </HBox>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </center>
+
+    <!-- Bagian Bawah -->
+    <bottom>
+        <VBox prefHeight="306.0" prefWidth="768.0" spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Label text="Reservasi" />
+            <DatePicker fx:id="tglPinjamField" />
+            <TextField fx:id="lamaSewaField" promptText="Lama sewa" />
+            <ChoiceBox fx:id="tipeSewaField" />
+            <HBox spacing="10">
+                <Button onAction="#hitungTotal" text="Hitung Total" />
+                <Button onAction="#simpanReservasi" text="Simpan Reservasi" />
+            <Button fx:id="close" mnemonicParsing="false" onAction="#close" text="Exit" />
+            </HBox>
+            <Label fx:id="totalHargaLabel" text="Total Harga akan muncul di sini" />
+            <ListView fx:id="reservasiList" prefHeight="150" />
+        </VBox>
+    </bottom>
+</BorderPane>

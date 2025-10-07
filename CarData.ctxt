@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=CarData
+comment1.params=id\ merk\ model\ hargaPerJam\ hargaPerHari
+comment1.target=CarData(java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double)
+comment2.params=
+comment2.target=java.lang.String\ getId()
+comment3.params=
+comment3.target=java.lang.String\ getMerk()
+comment4.params=
+comment4.target=java.lang.String\ getModel()
+comment5.params=
+comment5.target=double\ getHargaPerJam()
+comment6.params=
+comment6.target=double\ getHargaPerHari()
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

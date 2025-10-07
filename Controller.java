@@ -1,113 +1,62 @@
-
-
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
+import javafx.scene.input.MouseEvent;
 
-/**
- * Write a description of JavaFX class Controller here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Controller implements Initializable
-{
-    @FXML
-    private  Button close;
+public class Controller {
 
-    @FXML
-    private Button login;
-
-    @FXML
-    private AnchorPane main_form;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private TextField username;
+    private String[] usernames = {"admin", "user"};
+    private String[] passwords = {"123", "456"};
     
-    private Connection connect;
-    private PreparedStatement prepare;
-    private ResultSet result;
-    
-    public void login(){
-        String sql = "SELECT * FROM admin WHERE username = ? and password = ?";
-        
-        connect = Database.connectDB();
-        
-        Alert alert;
-        
-        try{
+    private double x = 0;
+    private double y = 0;
+
+    @FXML
+    private void handleLogin(ActionEvent event) throws IOException {
+        String usernameInput = "admin"; // nanti ambil dari TextField
+        String passwordInput = "123";   // nanti ambil dari PasswordField
+
+        if (checkLogin(usernameInput, passwordInput)) {
+            // inisialisasi data dummy
+            Database.initSampleData();
+
+            // pindah ke dashboard
+            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             
-            if(username.getText().isEmpty() || password.getText().isEmpty() ){
-                
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("error message");
-                alert.setHeaderText(null);
-                alert.setContentText("Tolong masukan username dan password");
-                alert.showAndWait();
-                
-            }else{
+            root.setOnMousePressed((MouseEvent mouse) -> {
+                x = mouse.getSceneX();
+                y = mouse.getSceneY();
+            });
             
-            prepare = connect.prepareStatement(sql);
-            prepare.setString(1, username.getText());
-            prepare.setString(2, password.getText());
+            root.setOnMouseDragged((MouseEvent mouse) -> {
+               stage.setX(mouse.getScreenX() - x);
+               stage.setY(mouse.getScreenY() - y);
+            });
             
-            result = prepare.executeQuery();
-            
-                if(result.next()){
-                    
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Succses");
-                    alert.showAndWait();
-                    
-                    
-                    Parent root = FXMLLoader.load(getClass().getResource(""));
-                    
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    
-                    stage.setScene(scene);
-                    stage.show();
-                    
-                }else{
-                    
-                    alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Wrong username/password");
-                    alert.showAndWait();
-                }
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+        } else {
+            System.out.println("Login gagal!");
+        }
+    }
+
+    private boolean checkLogin(String user, String pass) {
+        for (int i = 0; i < usernames.length; i++) {
+            if (usernames[i].equals(user) && passwords[i].equals(pass)) {
+                return true;
             }
-        }catch(Exception e){e.printStackTrace();}
+        }
+        return false;
     }
     
     public void close(){
         System.exit(0);
-    }
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb){
-        // YDK
     }
 }

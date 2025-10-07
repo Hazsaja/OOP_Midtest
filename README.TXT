@@ -1,10 +1,11 @@
 ------------------------------------------------------------------------
-MAAF KALO TIDAK RAPI
+Maaf saya salah push file malah yang versi sebelum saya demokan, saya
+minta maaf.
 ------------------------------------------------------------------------
 
-PROJECT TITLE: 
+PROJECT TITLE:
 PURPOSE OF PROJECT:
 VERSION or DATE:
 HOW TO START THIS PROJECT:
-AUTHORS: ME
+AUTHORS:
 USER INSTRUCTIONS:
